@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Transformation Game</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material3-style@0.0.1/dist/material3-style.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div is="m3-card" class="container">
+    <div class="container">
         <h1>Word Transformation Game</h1>
         <div class="instructions">
             <p>
@@ -29,12 +28,12 @@
         </div>
         <div class="game-area">
             <p>Current word: <span id="current-word"></span></p>
-            <m3-text-field type="text" id="player-input" placeholder="Enter your word"></m3-text-field>
-            <button is="m3-button" id="submit-btn" unelevated>Submit</button>
+            <input type="text" id="player-input" placeholder="Enter your word">
+            <button id="submit-btn">Submit</button>
             <div class="buttons">
-                <button is="m3-button" id="undo-btn">Undo</button>
-                <button is="m3-button" id="new-btn">New</button>
-                <button is="m3-button" id="restart-btn" class="btn-danger">Restart</button>
+                <button id="undo-btn">Undo</button>
+                <button id="new-btn">New</button>
+                <button id="restart-btn" class="btn-danger">Restart</button>
             </div>
         </div>
         <div class="message-area">

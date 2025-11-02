@@ -1,73 +1,123 @@
 :root {
-    --m3-font-family: 'Roboto', sans-serif;
-    --m3-background-color: #121212;
-    --m3-on-background-color: #FFFFFF;
-    --m3-surface-color: #1E1E1E;
-    --m3-on-surface-color: #FFFFFF;
-    --m3-primary-color: #6200EE;
-    --m3-on-primary-color: #FFFFFF;
-    --m3-secondary-color: #03DAC6;
-    --m3-on-secondary-color: #000000;
-    --m3-error-color: #CF6679;
-    --m3-on-error-color: #000000;
+  --bg-color: #fdfaf6; /* Soft parchment white */
+  --text-color: #4a3c31; /* Warm coffee brown */
+  --accent-color: #d87d4a; /* Gentle terracotta */
+  --highlight-color: #8ba57d; /* Muted sage green */
+  --font-main: 'Merriweather', Georgia, 'Times New Roman', Times, serif; /* Serif for a classic, warm feel */
+  --font-accent: 'Caveat', cursive; /* Handwritten quirk for personality, used sparingly */
+  --spacing-unit: 1.5rem;
+  --border-radius: 0.75rem; /* Softened edges for warmth */
 }
 
 body {
-    font-family: var(--m3-font-family);
-    background-color: var(--m3-background-color);
-    color: var(--m3-on-background-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: var(--spacing-unit);
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+  /* Idiosyncratic touch: Subtle texture for personable feel */
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 100% 2px;
 }
 
-.container {
-    background-color: var(--m3-surface-color);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 600px;
+h1, h2, h3 {
+  font-weight: 600;
+  margin-top: calc(var(--spacing-unit) * 2);
+  margin-bottom: var(--spacing-unit);
+  letter-spacing: -0.015em;
 }
 
-.instructions {
-    margin-bottom: 1.5rem;
+h1 {
+  font-size: 2.5rem;
+  /* Personable quirk: Slight tilt for idiosyncrasy */
+  transform: rotate(-0.5deg);
+  display: inline-block;
 }
 
-.game-area {
-    margin-bottom: 1.5rem;
+h2 {
+  font-size: 1.75rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.25rem;
+  width: max-content; /* Asymmetrical underline */
 }
 
-#player-input {
-    width: 100%;
-    margin-bottom: 1rem;
+p {
+  margin-bottom: var(--spacing-unit);
 }
 
-.buttons {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-color);
+  transition: color 0.2s ease, border-bottom 0.2s ease;
 }
 
-.message-area {
-    margin-bottom: 1rem;
-    color: var(--m3-error-color);
-    min-height: 1.5rem;
+a:hover {
+  color: var(--highlight-color);
+  border-bottom: 1px solid var(--highlight-color);
 }
 
-#used-words {
-    display: block;
-    margin-top: 0.5rem;
-    word-break: break-word;
+button {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: transform 0.1s ease, background-color 0.2s ease;
+  /* Idiosyncratic: Asymmetrical skew on hover */
 }
 
-.btn-danger {
-    color: var(--m3-error-color) !important;
+button:hover {
+  background-color: var(--highlight-color);
+  transform: skew(-2deg);
 }
 
-.most-recent-word {
-    font-weight: bold;
-    font-family: serif;
+ul, ol {
+  margin-bottom: var(--spacing-unit);
+  padding-left: var(--spacing-unit);
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Personable accent class for quirky elements */
+.accent-text {
+  font-family: var(--font-accent);
+  font-size: 1.2em;
+  color: var(--accent-color);
+  display: inline-block;
+  transform: rotate(1deg); /* Slight handwritten tilt */
+}
+
+/* Minimalistic form styling */
+input, textarea {
+  background-color: #fff;
+  border: 1px solid var(--text-color);
+  padding: 0.75rem;
+  border-radius: var(--border-radius);
+  font-family: var(--font-main);
+  width: 100%;
+  margin-bottom: var(--spacing-unit);
+  box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(216, 125, 74, 0.2); /* Warm glow */
+}
+
+/* Responsive quirk: On small screens, reduce tilt */
+@media (max-width: 768px) {
+  h1 {
+    transform: none;
+  }
 }
