@@ -38,7 +38,12 @@ function updateUI() {
     const usedWordsArray = [...usedWords];
     let usedWordsHTML = '';
     for (let i = 0; i < usedWordsArray.length; i++) {
-        usedWordsHTML += usedWordsArray[i];
+        if (i === usedWordsArray.length - 1) {
+            usedWordsHTML += `<span class="most-recent-word">${usedWordsArray[i]}</span>`;
+        } else {
+            usedWordsHTML += usedWordsArray[i];
+        }
+
         if (i < usedWordsArray.length - 1) {
             usedWordsHTML += ', ';
         }
@@ -130,11 +135,15 @@ undoBtn.addEventListener('click', () => {
 });
 
 newBtn.addEventListener('click', () => {
-    startGame();
+    if (confirm("Are you sure you want to start a new game?")) {
+        startGame();
+    }
 });
 
 restartBtn.addEventListener('click', () => {
-    init();
+    if (confirm("Are you sure you want to restart the game?")) {
+        init();
+    }
 });
 
 init();

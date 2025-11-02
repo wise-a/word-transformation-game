@@ -62,3 +62,12 @@ body {
     margin-top: 0.5rem;
     word-break: break-word;
 }
+
+.btn-danger {
+    color: var(--m3-error-color) !important;
+}
+
+.most-recent-word {
+    font-weight: bold;
+    font-family: serif;
+}
