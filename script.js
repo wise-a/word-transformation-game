@@ -98,8 +98,7 @@ function validTransformation(word1, word2) {
     return false;
 }
 
-
-submitBtn.addEventListener('click', () => {
+function handleSubmit() {
     const playerWord = playerInputEl.value.toLowerCase();
 
     if (!isValidWord(playerWord)) {
@@ -120,7 +119,15 @@ submitBtn.addEventListener('click', () => {
     } else {
         messageEl.textContent = 'Invalid transformation.';
     }
+}
+
+playerInputEl.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        handleSubmit();
+    }
 });
+
+submitBtn.addEventListener('click', handleSubmit);
 
 undoBtn.addEventListener('click', () => {
     if (previousWord) {
