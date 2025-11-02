@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.instructions {
+    margin-bottom: 1rem;
+}
+
+.game-area {
+    margin-bottom: 1rem;
+}
+
+#player-input {
+    margin-right: 0.5rem;
+}
+
+.buttons {
+    margin-top: 1rem;
+}
+
+.message-area {
+    margin-bottom: 1rem;
+    color: red;
+}

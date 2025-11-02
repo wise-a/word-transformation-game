@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Transformation Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Word Transformation Game</h1>
+        <div class="instructions">
+            <p>
+                <strong>Rules:</strong>
+                <ol>
+                    <li>You start with a random 3-letter word.</li>
+                    <li>On each turn, you must transform the word into another valid word by:
+                        <ul>
+                            <li>Adding one letter.</li>
+                            <li>Removing one letter.</li>
+                            <li>Changing one letter.</li>
+                            <li>Rearranging the letters.</li>
+                        </ul>
+                    </li>
+                    <li>Words cannot be repeated.</li>
+                </ol>
+            </p>
+        </div>
+        <div class="game-area">
+            <p>Current word: <span id="current-word"></span></p>
+            <input type="text" id="player-input" placeholder="Enter your word">
+            <button id="submit-btn">Submit</button>
+            <div class="buttons">
+                <button id="undo-btn">Undo</button>
+                <button id="new-btn">New</button>
+                <button id="restart-btn">Restart</button>
+            </div>
+        </div>
+        <div class="message-area">
+            <p id="message"></p>
+        </div>
+        <div class="used-words-area">
+            <p>Used words: <span id="used-words"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
