@@ -1,36 +1,158 @@
+/* Root element for defining CSS variables.
+  This block contains default light theme colors and elevation styles.
+*/
+:root {
+  /* Material Baseline Light Theme Colors */
+  --md-sys-color-primary: #6750a4;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #eaddff;
+  --md-sys-color-on-primary-container: #21005d;
+  --md-sys-color-error: #b3261e;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-surface: #ffffff;
+  --md-sys-color-on-surface: #1c1b1f;
+  --md-sys-color-surface-variant: #e7e0ec;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-outline: #7a757f;
+  --md-sys-color-background: #fffbff;
+  --md-sys-color-on-background: #1c1b1f;
+  
+  /* Material Elevation Levels (Simplified) */
+  --md-elevation-level0: none;
+  --md-elevation-level1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  /* Additional levels can be added as needed */
+}
+
+/* Dark mode color definitions.
+  These variables override the light theme when the user's system prefers dark mode.
+*/
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-sys-color-primary: #d0bcff;
+    --md-sys-color-on-primary: #381e72;
+    --md-sys-color-primary-container: #4f378b;
+    --md-sys-color-on-primary-container: #eaddff;
+    --md-sys-color-error: #f2b8b5;
+    --md-sys-color-on-error: #601410;
+    --md-sys-color-surface: #0d1117; /* GitHub-inspired dark surface */
+    --md-sys-color-on-surface: #c9d1d9;
+    --md-sys-color-surface-variant: #21262d;
+    --md-sys-color-on-surface-variant: #b3bac5;
+    --md-sys-color-outline: #30363d;
+    --md-sys-color-background: #161b22; /* GitHub-inspired dark background */
+    --md-sys-color-on-background: #c9d1d9;
+
+    /* Adjusted shadows for dark mode */
+    --md-elevation-level1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* Base body styles */
 body {
-    font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for motion */
 }
 
+/* Main container card */
 .container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--md-sys-color-surface);
+  padding: 1.5rem; /* Material spacing scale */
+  border-radius: 12px; /* Increased radius for Material card shapes (12dp) */
+  box-shadow: var(--md-elevation-level1); /* Material elevation level 1 */
+  max-width: 600px;
+  width: 100%;
+  margin: 1rem; /* Ensure spacing on small screens */
+  box-sizing: border-box; /* Include padding in width calculation */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Intentional motion */
 }
 
+/* Instructional text */
 .instructions {
-    margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem; /* Body large in Material typography */
+  line-height: 1.5;
+  color: var(--md-sys-color-on-surface-variant); /* Subtle on-surface variant for secondary text */
 }
 
+/* Game input area */
 .game-area {
-    margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Material spacing */
 }
 
+/* Text input field */
 #player-input {
-    margin-right: 0.5rem;
+  padding: 0.75rem 1rem; /* Material text field padding */
+  border: 1px solid var(--md-sys-color-outline); /* Outlined text field style */
+  border-radius: 4px; /* Material small shape radius (4dp) */
+  font-size: 1rem;
+  font-family: inherit; /* Ensure font is inherited */
+  background-color: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box; /* Include padding in width calculation */
+  width: 100%;
 }
 
+#player-input:focus {
+  outline: none;
+  border-color: var(--md-sys-color-primary); /* Primary color focus */
+  box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.1); /* Focus halo with primary container color */
+}
+
+/* Button container */
 .buttons {
-    margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
 }
 
+/* Button styles (Material filled button) */
+button {
+  padding: 0.625rem 1.5rem; /* 10dp vertical, 24dp horizontal */
+  border: none;
+  border-radius: 20px; /* Fully rounded pill shape */
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  font-family: inherit; /* Ensure font is inherited */
+  font-size: 0.875rem; /* Label medium typography */
+  font-weight: 500; /* Medium weight for buttons */
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease; /* Motion for states */
+  box-shadow: var(--md-elevation-level0);
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+button:hover {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  box-shadow: var(--md-elevation-level1);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(103, 80, 164, 0.3); /* Focus halo */
+}
+
+button:active {
+  transform: scale(0.98); /* Subtle press animation */
+}
+
+/* Feedback/message area */
 .message-area {
-    margin-bottom: 1rem;
-    color: red;
+  margin-top: 1.5rem; /* Use margin-top instead of margin-bottom on .game-area */
+  color: var(--md-sys-color-error); /* Material error color */
+  font-size: 0.875rem;
+  line-height: 1.25;
+  min-height: 1.25rem; /* Reserve space to prevent layout shift */
 }
