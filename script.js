@@ -6,6 +6,7 @@ const newBtn = document.getElementById('new-btn');
 const restartBtn = document.getElementById('restart-btn');
 const messageEl = document.getElementById('message');
 const usedWordsEl = document.getElementById('used-words');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
 let wordList;
 let currentWord;
@@ -151,6 +152,10 @@ restartBtn.addEventListener('click', () => {
     if (confirm("Are you sure you want to restart the game?")) {
         init();
     }
+});
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
 });
 
 init();
