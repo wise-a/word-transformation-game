@@ -35,7 +35,18 @@ function updateUI() {
     currentWordEl.textContent = currentWord;
     playerInputEl.value = '';
     messageEl.textContent = '';
-    usedWordsEl.textContent = [...usedWords].join(', ');
+    const usedWordsArray = [...usedWords];
+    let usedWordsHTML = '';
+    for (let i = 0; i < usedWordsArray.length; i++) {
+        usedWordsHTML += usedWordsArray[i];
+        if (i < usedWordsArray.length - 1) {
+            usedWordsHTML += ', ';
+        }
+        if ((i + 1) % 10 === 0 && i < usedWordsArray.length - 1) {
+            usedWordsHTML += '<br>';
+        }
+    }
+    usedWordsEl.innerHTML = usedWordsHTML;
 }
 
 function isValidWord(word) {
