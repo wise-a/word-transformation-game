@@ -1,36 +1,64 @@
+:root {
+    --m3-font-family: 'Roboto', sans-serif;
+    --m3-background-color: #121212;
+    --m3-on-background-color: #FFFFFF;
+    --m3-surface-color: #1E1E1E;
+    --m3-on-surface-color: #FFFFFF;
+    --m3-primary-color: #6200EE;
+    --m3-on-primary-color: #FFFFFF;
+    --m3-secondary-color: #03DAC6;
+    --m3-on-secondary-color: #000000;
+    --m3-error-color: #CF6679;
+    --m3-on-error-color: #000000;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: var(--m3-font-family);
+    background-color: var(--m3-background-color);
+    color: var(--m3-on-background-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    margin: 0;
 }
 
 .container {
-    background-color: white;
+    background-color: var(--m3-surface-color);
     padding: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
 }
 
 .instructions {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .game-area {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 #player-input {
-    margin-right: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .buttons {
+    display: flex;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 
 .message-area {
     margin-bottom: 1rem;
-    color: red;
+    color: var(--m3-error-color);
+    min-height: 1.5rem;
+}
+
+#used-words {
+    display: block;
+    margin-top: 0.5rem;
+    word-break: break-word;
 }
