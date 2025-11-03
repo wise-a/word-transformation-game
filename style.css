@@ -1,3 +1,9 @@
+/* Idiosyncratic CSS: Minimalistic modern with warm, personable touches.
+   - Clean lines and ample space for minimalism.
+   - Modern serif fonts with subtle elegance.
+   - Warm earth tones for approachability.
+   - Quirky elements: Slight asymmetry in buttons, handwritten-like accents. */
+
 :root {
   --bg-color: #fdfaf6; /* Soft parchment white */
   --text-color: #4a3c31; /* Warm coffee brown */
@@ -63,20 +69,21 @@ a:hover {
 }
 
 button {
-  background-color: var(--accent-color);
-  color: var(--bg-color);
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
   border-radius: var(--border-radius);
-  transition: transform 0.1s ease, background-color 0.2s ease;
-  /* Idiosyncratic: Asymmetrical skew on hover */
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
   background-color: var(--highlight-color);
-  transform: skew(-2deg);
+}
+
+#submit-btn, #undo-btn, #new-btn, #restart-btn {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
 }
 
 ul, ol {
@@ -95,6 +102,11 @@ li {
   color: var(--accent-color);
   display: inline-block;
   transform: rotate(1deg); /* Slight handwritten tilt */
+}
+
+.used-words-area {
+  font-family: sans-serif;
+  font-weight: normal;
 }
 
 /* Minimalistic form styling */
@@ -120,4 +132,44 @@ input:focus, textarea:focus {
   h1 {
     transform: none;
   }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-unit);
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-danger {
+  background-color: #a52a2a;
+}
+
+#theme-toggle-btn {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+#theme-toggle-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.dark-theme {
+  --bg-color: #4a3c31;
+  --text-color: #fdfaf6;
+  --accent-color: #d87d4a;
+  --highlight-color: #8ba57d;
 }
