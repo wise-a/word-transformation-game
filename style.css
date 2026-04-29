@@ -6,25 +6,17 @@
     --text-color: #1a1a1a; 
     
     /* Theme Colors */
-    --primary: #eac435; /* Saffron */
-    --secondary: #03cea4; /* Mint-leaf */
-    --error: #fb4d3d; /* Tomato */
+    --saffron: #eac435;
+    --dusk-blue: #345995;
+    --mint-leaf: #03cea4;
+    --tomato: #fb4d3d;
+    --rosewood: #ca1551;
 
     /* STRICT RULES */
-    --radius: 16px;       /* Slightly reduced for the main card */
+    --radius: 16px;       /* Softer radius for the main card */
     --btn-radius: 30px;   /* Pill shape for buttons */
     --border-thick: 4px; 
     --border-color: #1a1a1a; 
-}
-
-/* Optional Dark Mode - Inherits customizable variables */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #121212;
-        --surface-color: #1e1e1e;
-        --text-color: #f0f0f0;
-        --border-color: #f0f0f0;
-    }
 }
 
 * {
@@ -34,7 +26,7 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
@@ -44,15 +36,23 @@ body {
     padding: 2rem;
     line-height: 1.6;
     font-size: 18px;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Merriweather', serif;
     font-weight: 900;
     color: var(--text-color);
+    line-height: 1.2;
     margin-bottom: 1.5rem;
 }
+
+h1 { 
+    font-size: 2.5rem; 
+    letter-spacing: -1px; 
+    text-align: center;
+}
+
+p { margin-bottom: 1rem; }
 
 /* --- 2. MAIN CONTAINER --- */
 .container {
@@ -60,7 +60,7 @@ h1, h2, h3, h4 {
     border: var(--border-thick) solid var(--border-color);
     border-radius: var(--radius);
     padding: 2.5rem;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
     box-shadow: 8px 8px 0px var(--border-color);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -71,27 +71,48 @@ h1, h2, h3, h4 {
     box-shadow: 12px 12px 0px var(--border-color);
 }
 
-/* --- 3. INSTRUCTIONS & GAME AREA --- */
+/* --- 3. INSTRUCTIONS & LISTS --- */
 .instructions {
     margin-bottom: 2rem;
-    font-weight: 500;
-    max-width: 65ch;
+    padding-bottom: 1.5rem;
+    border-bottom: var(--border-thick) solid var(--border-color);
 }
 
+.instructions ol, .instructions ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- 4. GAME AREA & INPUTS --- */
 .game-area {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-bottom: 2rem;
 }
 
-/* --- 4. INPUT FIELD --- */
+/* Highlight the word the player is currently transforming */
+#current-word {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--surface-color);
+    background: var(--dusk-blue);
+    padding: 0.2rem 0.8rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 #player-input {
     width: 100%;
     padding: 1rem 1.5rem;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-family: inherit;
-    font-weight: 600;
+    font-weight: 800;
     background-color: var(--bg-color);
     color: var(--text-color);
     border: var(--border-thick) solid var(--border-color);
@@ -101,8 +122,8 @@ h1, h2, h3, h4 {
 }
 
 #player-input:focus {
-    box-shadow: 6px 6px 0px var(--border-color);
-    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--dusk-blue);
+    transform: translate(-3px, -3px);
 }
 
 /* --- 5. BUTTONS --- */
@@ -114,9 +135,9 @@ h1, h2, h3, h4 {
 
 button {
     display: inline-block;
-    background-color: var(--primary);
-    color: var(--border-color);
-    padding: 0.8rem 2rem;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0.8rem 1.5rem;
     font-family: inherit;
     font-size: 1rem;
     font-weight: 800;
@@ -129,10 +150,8 @@ button {
 }
 
 button:hover {
-    background-color: var(--border-color);
-    color: var(--surface-color);
     transform: translate(-4px, -4px);
-    box-shadow: 6px 6px 0px var(--primary);
+    box-shadow: 6px 6px 0px var(--border-color);
 }
 
 button:active {
@@ -140,12 +159,62 @@ button:active {
     box-shadow: none;
 }
 
-/* --- 6. MESSAGES & FEEDBACK --- */
+/* Specific Button Colors based on your palette */
+#submit-btn {
+    background-color: var(--mint-leaf);
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+#undo-btn { 
+    background-color: var(--saffron); 
+    flex: 1; 
+}
+
+#new-btn { 
+    background-color: var(--dusk-blue); 
+    color: var(--surface-color); 
+    flex: 1; 
+}
+
+#restart-btn { 
+    background-color: var(--tomato); 
+    color: var(--surface-color); 
+    flex: 1; 
+}
+
+/* --- 6. MESSAGES & USED WORDS --- */
 .message-area {
     margin-top: 1.5rem;
-    color: var(--error);
+    color: var(--tomato);
     font-weight: 800;
-    font-size: 1.1rem;
-    min-height: 1.5rem; /* Prevents layout shift */
+    font-size: 1.2rem;
+    min-height: 1.5rem;
     text-align: center;
+}
+
+.used-words-area {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border: var(--border-thick) dashed var(--border-color);
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+#used-words {
+    color: var(--rosewood);
+    font-weight: 800;
+}
+
+/* --- 7. MOBILE RESPONSIVE --- */
+@media (max-width: 600px) {
+    .buttons {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
 }
