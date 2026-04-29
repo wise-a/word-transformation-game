@@ -6,6 +6,7 @@ const newBtn = document.getElementById('new-btn');
 const restartBtn = document.getElementById('restart-btn');
 const messageEl = document.getElementById('message');
 const usedWordsEl = document.getElementById('used-words');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
 
 let wordList;
 let currentWord;
@@ -38,7 +39,12 @@ function updateUI() {
     const usedWordsArray = [...usedWords];
     let usedWordsHTML = '';
     for (let i = 0; i < usedWordsArray.length; i++) {
-        usedWordsHTML += usedWordsArray[i];
+        if (i === usedWordsArray.length - 1) {
+            usedWordsHTML += `<span class="most-recent-word">${usedWordsArray[i]}</span>`;
+        } else {
+            usedWordsHTML += usedWordsArray[i];
+        }
+
         if (i < usedWordsArray.length - 1) {
             usedWordsHTML += ', ';
         }
@@ -93,8 +99,7 @@ function validTransformation(word1, word2) {
     return false;
 }
 
-
-submitBtn.addEventListener('click', () => {
+function handleSubmit() {
     const playerWord = playerInputEl.value.toLowerCase();
 
     if (!isValidWord(playerWord)) {
@@ -115,7 +120,15 @@ submitBtn.addEventListener('click', () => {
     } else {
         messageEl.textContent = 'Invalid transformation.';
     }
+}
+
+playerInputEl.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        handleSubmit();
+    }
 });
+
+submitBtn.addEventListener('click', handleSubmit);
 
 undoBtn.addEventListener('click', () => {
     if (previousWord) {
@@ -130,11 +143,19 @@ undoBtn.addEventListener('click', () => {
 });
 
 newBtn.addEventListener('click', () => {
-    startGame();
+    if (confirm("Are you sure you want to start a new game?")) {
+        startGame();
+    }
 });
 
 restartBtn.addEventListener('click', () => {
-    init();
+    if (confirm("Are you sure you want to restart the game?")) {
+        init();
+    }
+});
+
+themeToggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
 });
 
 init();
