@@ -1,175 +1,220 @@
-/* Idiosyncratic CSS: Minimalistic modern with warm, personable touches.
-   - Clean lines and ample space for minimalism.
-   - Modern serif fonts with subtle elegance.
-   - Warm earth tones for approachability.
-   - Quirky elements: Slight asymmetry in buttons, handwritten-like accents. */
-
+/* --- 1. CORE VARIABLES & RESET --- */
 :root {
-  --bg-color: #fdfaf6; /* Soft parchment white */
-  --text-color: #4a3c31; /* Warm coffee brown */
-  --accent-color: #d87d4a; /* Gentle terracotta */
-  --highlight-color: #8ba57d; /* Muted sage green */
-  --font-main: 'Merriweather', Georgia, 'Times New Roman', Times, serif; /* Serif for a classic, warm feel */
-  --font-accent: 'Caveat', cursive; /* Handwritten quirk for personality, used sparingly */
-  --spacing-unit: 1.5rem;
-  --border-radius: 0.75rem; /* Softened edges for warmth */
+    /* Palette Configuration */
+    --bg-color: #faf9f6;
+    --surface-color: #ffffff;
+    --text-color: #1a1a1a; 
+    
+    /* Theme Colors */
+    --saffron: #eac435;
+    --dusk-blue: #345995;
+    --mint-leaf: #03cea4;
+    --tomato: #fb4d3d;
+    --rosewood: #ca1551;
+
+    /* STRICT RULES */
+    --radius: 16px;       /* Softer radius for the main card */
+    --btn-radius: 30px;   /* Pill shape for buttons */
+    --border-thick: 4px; 
+    --border-color: #1a1a1a; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: var(--font-main);
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 0;
-  padding: var(--spacing-unit);
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  /* Idiosyncratic touch: Subtle texture for personable feel */
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 100% 2px;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    line-height: 1.6;
+    font-size: 18px;
 }
 
-h1, h2, h3 {
-  font-weight: 600;
-  margin-top: calc(var(--spacing-unit) * 2);
-  margin-bottom: var(--spacing-unit);
-  letter-spacing: -0.015em;
+h1, h2, h3, h4 {
+    font-family: 'Merriweather', serif;
+    font-weight: 900;
+    color: var(--text-color);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
 }
 
-h1 {
-  font-size: 2.5rem;
-  /* Personable quirk: Slight tilt for idiosyncrasy */
-  transform: rotate(-0.5deg);
-  display: inline-block;
+h1 { 
+    font-size: 2.5rem; 
+    letter-spacing: -1px; 
+    text-align: center;
 }
 
-h2 {
-  font-size: 1.75rem;
-  border-bottom: 2px solid var(--accent-color);
-  padding-bottom: 0.25rem;
-  width: max-content; /* Asymmetrical underline */
+p { margin-bottom: 1rem; }
+
+/* --- 2. MAIN CONTAINER --- */
+.container {
+    background: var(--surface-color);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 8px 8px 0px var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-p {
-  margin-bottom: var(--spacing-unit);
+.container:hover {
+    transform: translateY(-4px);
+    box-shadow: 12px 12px 0px var(--border-color);
 }
 
-a {
-  color: var(--accent-color);
-  text-decoration: none;
-  border-bottom: 1px dotted var(--accent-color);
-  transition: color 0.2s ease, border-bottom 0.2s ease;
+/* --- 3. INSTRUCTIONS & LISTS --- */
+.instructions {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: var(--border-thick) solid var(--border-color);
 }
 
-a:hover {
-  color: var(--highlight-color);
-  border-bottom: 1px solid var(--highlight-color);
+.instructions ol, .instructions ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.instructions li {
+    margin-bottom: 0.5rem;
+}
+
+/* --- 4. GAME AREA & INPUTS --- */
+.game-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Highlight the word the player is currently transforming */
+#current-word {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--surface-color);
+    background: var(--dusk-blue);
+    padding: 0.2rem 0.8rem;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#player-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    font-family: inherit;
+    font-weight: 800;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--radius);
+    outline: none;
+    transition: 0.2s;
+}
+
+#player-input:focus {
+    box-shadow: 6px 6px 0px var(--dusk-blue);
+    transform: translate(-3px, -3px);
+}
+
+/* --- 5. BUTTONS --- */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 button {
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  transition: background-color 0.2s ease;
+    display: inline-block;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0.8rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 800;
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    transition: 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
-  background-color: var(--highlight-color);
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px var(--border-color);
 }
 
-#submit-btn, #undo-btn, #new-btn, #restart-btn {
-  background-color: var(--accent-color);
-  color: var(--bg-color);
+button:active {
+    transform: translate(0, 0);
+    box-shadow: none;
 }
 
-ul, ol {
-  margin-bottom: var(--spacing-unit);
-  padding-left: var(--spacing-unit);
+/* Specific Button Colors based on your palette */
+#submit-btn {
+    background-color: var(--mint-leaf);
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
 }
 
-li {
-  margin-bottom: 0.5rem;
+#undo-btn { 
+    background-color: var(--saffron); 
+    flex: 1; 
 }
 
-/* Personable accent class for quirky elements */
-.accent-text {
-  font-family: var(--font-accent);
-  font-size: 1.2em;
-  color: var(--accent-color);
-  display: inline-block;
-  transform: rotate(1deg); /* Slight handwritten tilt */
+#new-btn { 
+    background-color: var(--dusk-blue); 
+    color: var(--surface-color); 
+    flex: 1; 
+}
+
+#restart-btn { 
+    background-color: var(--tomato); 
+    color: var(--surface-color); 
+    flex: 1; 
+}
+
+/* --- 6. MESSAGES & USED WORDS --- */
+.message-area {
+    margin-top: 1.5rem;
+    color: var(--tomato);
+    font-weight: 800;
+    font-size: 1.2rem;
+    min-height: 1.5rem;
+    text-align: center;
 }
 
 .used-words-area {
-  font-family: sans-serif;
-  font-weight: normal;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border: var(--border-thick) dashed var(--border-color);
+    border-radius: var(--radius);
+    font-weight: 600;
 }
 
-/* Minimalistic form styling */
-input, textarea {
-  background-color: #fff;
-  border: 1px solid var(--text-color);
-  padding: 0.75rem;
-  border-radius: var(--border-radius);
-  font-family: var(--font-main);
-  width: 100%;
-  margin-bottom: var(--spacing-unit);
-  box-sizing: border-box;
+#used-words {
+    color: var(--rosewood);
+    font-weight: 800;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(216, 125, 74, 0.2); /* Warm glow */
-}
-
-/* Responsive quirk: On small screens, reduce tilt */
-@media (max-width: 768px) {
-  h1 {
-    transform: none;
-  }
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--spacing-unit);
-}
-
-.buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.btn-danger {
-  background-color: #a52a2a;
-}
-
-#theme-toggle-btn {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-  border: 1px solid var(--accent-color);
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: var(--border-radius);
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-#theme-toggle-btn:hover {
-  background-color: var(--accent-color);
-  color: var(--bg-color);
-}
-
-.dark-theme {
-  --bg-color: #4a3c31;
-  --text-color: #fdfaf6;
-  --accent-color: #d87d4a;
-  --highlight-color: #8ba57d;
+/* --- 7. MOBILE RESPONSIVE --- */
+@media (max-width: 600px) {
+    .buttons {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
 }
