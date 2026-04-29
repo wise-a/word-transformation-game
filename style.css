@@ -2,7 +2,6 @@
 :root {
     /* Palette Configuration */
     --bg-color: #faf9f6;
-    --surface-color: #ffffff;
     --text-color: #1a1a1a; 
     
     /* Theme Colors */
@@ -13,10 +12,17 @@
     --rosewood: #ca1551;
 
     /* STRICT RULES */
-    --radius: 16px;       /* Softer radius for the main card */
-    --btn-radius: 30px;   /* Pill shape for buttons */
+    --radius: 12px;
+    --btn-radius: 30px;
     --border-thick: 4px; 
     --border-color: #1a1a1a; 
+}
+
+/* Dark Theme Toggle Class */
+.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #faf9f6;
+    --border-color: #faf9f6;
 }
 
 * {
@@ -25,120 +31,98 @@
     padding: 0;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem;
     line-height: 1.6;
     font-size: 18px;
+    max-width: 800px; /* Constrains the game width nicely */
+    margin: 0 auto;
+    padding: 2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Merriweather', serif;
     font-weight: 900;
+    line-height: 1.1;
     color: var(--text-color);
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
+    transition: color 0.3s ease;
 }
 
-h1 { 
-    font-size: 2.5rem; 
-    letter-spacing: -1px; 
-    text-align: center;
-}
+h1 { font-size: 3rem; letter-spacing: -2px; margin-bottom: 0.5rem; }
+h2 { font-size: 2rem; margin-bottom: 1.5rem; letter-spacing: -1px; }
 
-p { margin-bottom: 1rem; }
+p { margin-bottom: 1.5rem; }
+ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
+li { margin-bottom: 0.5rem; }
 
-/* --- 2. MAIN CONTAINER --- */
-.container {
-    background: var(--surface-color);
-    border: var(--border-thick) solid var(--border-color);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    max-width: 650px;
-    width: 100%;
-    box-shadow: 8px 8px 0px var(--border-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.container:hover {
-    transform: translateY(-4px);
-    box-shadow: 12px 12px 0px var(--border-color);
-}
-
-/* --- 3. INSTRUCTIONS & LISTS --- */
-.instructions {
+/* --- 2. LAYOUT COMPONENTS --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: var(--border-thick) solid var(--border-color);
+    transition: border-color 0.3s ease;
 }
 
-.instructions ol, .instructions ul {
-    margin-left: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.instructions li {
-    margin-bottom: 0.5rem;
-}
-
-/* --- 4. GAME AREA & INPUTS --- */
-.game-area {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* Highlight the word the player is currently transforming */
-#current-word {
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--surface-color);
-    background: var(--dusk-blue);
-    padding: 0.2rem 0.8rem;
-    border-radius: 8px;
-    border: 2px solid var(--border-color);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-#player-input {
-    width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
-    font-family: inherit;
-    font-weight: 800;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    border: var(--border-thick) solid var(--border-color);
-    border-radius: var(--radius);
-    outline: none;
-    transition: 0.2s;
-}
-
-#player-input:focus {
-    box-shadow: 6px 6px 0px var(--dusk-blue);
-    transform: translate(-3px, -3px);
-}
-
-/* --- 5. BUTTONS --- */
 .buttons {
     display: flex;
     gap: 1rem;
+    margin-top: 1.5rem;
     flex-wrap: wrap;
 }
 
+.used-words-area {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    background-color: var(--bg-color);
+    border: var(--border-thick) solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 6px 6px 0px var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.used-words-area:hover {
+    transform: translateY(-4px);
+    box-shadow: 10px 10px 0px var(--saffron);
+}
+
+/* --- 3. INPUTS --- */
+input, textarea {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: var(--border-thick) solid var(--border-color);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 1.2rem;
+    font-weight: 800;
+    width: 100%;
+    margin-bottom: 1rem;
+    transition: 0.2s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0px var(--dusk-blue);
+}
+
+/* --- 4. BUTTONS --- */
 button {
     display: inline-block;
     background-color: var(--bg-color);
     color: var(--text-color);
     padding: 0.8rem 1.5rem;
-    font-family: inherit;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 800;
     border: var(--border-thick) solid var(--border-color);
@@ -150,8 +134,10 @@ button {
 }
 
 button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
     transform: translate(-4px, -4px);
-    box-shadow: 6px 6px 0px var(--border-color);
+    box-shadow: 6px 6px 0px var(--text-color);
 }
 
 button:active {
@@ -159,59 +145,58 @@ button:active {
     box-shadow: none;
 }
 
-/* Specific Button Colors based on your palette */
-#submit-btn {
+/* Specific Action Buttons */
+#submit-btn, #new-btn {
     background-color: var(--mint-leaf);
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 1rem;
+    color: #1a1a1a;
 }
 
-#undo-btn { 
-    background-color: var(--saffron); 
-    flex: 1; 
+#undo-btn, #restart-btn {
+    background-color: var(--saffron);
+    color: #1a1a1a;
 }
 
-#new-btn { 
-    background-color: var(--dusk-blue); 
-    color: var(--surface-color); 
-    flex: 1; 
+.btn-danger {
+    background-color: var(--tomato);
+    color: #1a1a1a;
 }
 
-#restart-btn { 
-    background-color: var(--tomato); 
-    color: var(--surface-color); 
-    flex: 1; 
+/* Ensure contrasting hover text/shadows for colored buttons */
+#submit-btn:hover, #new-btn:hover, #undo-btn:hover, #restart-btn:hover, .btn-danger:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    box-shadow: 6px 6px 0px var(--border-color);
 }
 
-/* --- 6. MESSAGES & USED WORDS --- */
-.message-area {
-    margin-top: 1.5rem;
-    color: var(--tomato);
-    font-weight: 800;
-    font-size: 1.2rem;
-    min-height: 1.5rem;
-    text-align: center;
+/* Theme Toggle Button */
+#theme-toggle-btn {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: var(--radius); /* Square pill for utility buttons */
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
 }
 
-.used-words-area {
-    margin-top: 1rem;
-    padding: 1.5rem;
-    background: var(--bg-color);
-    border: var(--border-thick) dashed var(--border-color);
-    border-radius: var(--radius);
-    font-weight: 600;
+#theme-toggle-btn:hover {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-shadow: 4px 4px 0px var(--text-color);
 }
 
-#used-words {
-    color: var(--rosewood);
-    font-weight: 800;
-}
-
-/* --- 7. MOBILE RESPONSIVE --- */
-@media (max-width: 600px) {
+/* --- 5. RESPONSIVE QUIRKS --- */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.5rem; }
+    
     .buttons {
         flex-direction: column;
+        width: 100%;
     }
     
     button {
